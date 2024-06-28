@@ -24,6 +24,7 @@ export const useAuthStore = defineStore("auth", {
 			is_blacked: null,
 			login_at: null,
 			is_admin: false,
+			mode: "dark",
 		},
 		editUser: {},
 		token: null,
@@ -56,7 +57,7 @@ export const useAuthStore = defineStore("auth", {
 				}
 				this.editUser = JSON.parse(JSON.stringify(this.user));
 			}
-
+			document.getElementsByTagName("body")[0].className = this.user.mode;
 			contentStore.setContributors();
 		},
 		// 2. Email Login
@@ -100,7 +101,7 @@ export const useAuthStore = defineStore("auth", {
 			}
 			this.user = response.data.user;
 			this.editUser = JSON.parse(JSON.stringify(this.user));
-
+			document.getElementsByTagName("body")[0].className = this.user.mode;
 			contentStore.publicDashboards = [];
 			router.go();
 			dialogStore.showNotification("success", "登入成功");
@@ -145,7 +146,12 @@ export const useAuthStore = defineStore("auth", {
 			this.user = response.data.user;
 			this.editUser = JSON.parse(JSON.stringify(this.user));
 		},
-
+		// 2. Update mode
+		async toggleMode() {
+			this.user.mode = this.user.mode === "dark" ? "light" : "dark";
+			await http.patch("/user/me", { mode: this.user.mode });
+			document.getElementsByTagName("body")[0].className = this.user.mode;
+		},
 		/* Other Utility Functions */
 		// 1. Check if the user is using a mobile device.
 		// This is used to determine whether to show the mobile version of the dashboard.
