@@ -169,7 +169,7 @@ const linkQuery = computed(() => {
 	justify-content: space-between;
 	align-items: center;
 	border-bottom: 1px solid var(--color-border);
-	background-color:hsl(210, 5%, 16%, 0);
+	background-color: hsl(210, 5%, 16%, 0);
 	user-select: none;
 	position: absolute; /* 绝对定位 */
 	top: 0; /* 固定在页面顶部 */
