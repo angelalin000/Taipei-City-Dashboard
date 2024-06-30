@@ -12,6 +12,7 @@ import { useDialogStore } from "../../../store/dialogStore";
 
 import UserSettings from "../../dialogs/UserSettings.vue";
 import ContributorsList from "../../dialogs/ContributorsList.vue";
+import Image1 from "../../../assets/images/Img1.gif";
 
 const route = useRoute();
 const authStore = useAuthStore();
@@ -22,10 +23,66 @@ const linkQuery = computed(() => {
 	const { query } = route;
 	return `?index=${query.index}`;
 });
+
+import { ref, onMounted, onUnmounted } from "vue";
+const animalCanvas = ref(null);
+let animationFrameId = null;
+let animalImage = new Image();
+
+animalImage.src = Image1;
+
+const animal = {
+	x: 0, // 圈圈起始位置
+	y: 0, // 圈圈起始位置
+	width: 60,
+	height: 60,
+	speed: 1, // 調整速度
+};
+function drawAnimal(ctx) {
+	// // 畫圈圈
+	// ctx.beginPath();
+	// ctx.arc(animal.x, animal.y, animal.size, 0, Math.PI * 2);
+	// ctx.fillStyle = "orange";
+	// ctx.fill();
+	ctx.drawImage(animalImage, animal.x, animal.y, animal.width, animal.height);
+}
+function updateAnimal(canvasWidth) {
+	// 動態調整圈圈位置
+	animal.x += animal.speed;
+	if (animal.x > canvasWidth) {
+		animal.x = -animal.width;
+	}
+}
+function animate() {
+	const canvas = animalCanvas.value;
+	const ctx = canvas.getContext("2d");
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	drawAnimal(ctx);
+	updateAnimal(canvas.width);
+	animationFrameId = requestAnimationFrame(animate);
+}
+onMounted(() => {
+	const canvas = animalCanvas.value;
+	canvas.width = window.innerWidth; // 使canvas寬度與窗口寬度相同
+	canvas.height = 60; // 設置固定高度
+	animalImage.onload = () => {
+		animate();
+	};
+	window.addEventListener("resize", () => {
+		canvas.width = window.innerWidth;
+	});
+});
+onUnmounted(() => {
+	if (animationFrameId) {
+		cancelAnimationFrame(animationFrameId);
+	}
+	window.removeEventListener("resize", () => {});
+});
 </script>
 
 <template>
-	<div class="navbar">
+	<div>
+		<div class="navbar">
 		<a href="/">
 			<div class="navbar-logo">
 				<div class="navbar-logo-image">
@@ -160,11 +217,27 @@ const linkQuery = computed(() => {
 				<button @click="dialogStore.showDialog('login')">登入</button>
 			</div>
 		</div>
+		<canvas
+			ref="animalCanvas"
+		></canvas>
 	</div>
+
+	</div>
+	
 </template>
 
 <style scoped lang="scss">
+canvas {
+	position: relative; //絕對位置:自己獨立一層
+	// width: 100%;
+	height: 60px;
+	//border-bottom: 1px solid var(--color-border);
+	pointer-events: none; // 使canvas不影響鼠標事件
+	z-index: 1; // 圈圈在下
+}
+
 .navbar {
+	position: absolute; //絕對位置
 	height: 60px;
 	width: 100vw;
 	display: flex;
@@ -173,6 +246,7 @@ const linkQuery = computed(() => {
 	border-bottom: 1px solid var(--color-border);
 	background-color: var(--color-component-background);
 	user-select: none;
+	z-index: 1; // 確保canvas在其他元素下方
 
 	&-logo {
 		display: flex;
