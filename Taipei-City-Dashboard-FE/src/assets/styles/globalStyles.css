@@ -38,7 +38,7 @@
 	--dashboardcomponent-color-normal-text: #565656;
 	--dashboardcomponent-color-complement-text: #6e6a6a;
 	--dashboardcomponent-color-component-background: #F0F0F0;
-	--img-filter: invert(0.5);
+	--img-filter: invert(0.4);
 }
 
 * {

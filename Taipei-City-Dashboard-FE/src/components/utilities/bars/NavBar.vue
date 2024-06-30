@@ -74,9 +74,7 @@ const linkQuery = computed(() => {
 		</div>
 		<div class="navbar-user">
 			<button
-				v-if="
-					!(authStore.isMobileDevice && authStore.isNarrowDevice)
-				"
+				v-if="!(authStore.isMobileDevice && authStore.isNarrowDevice)"
 				class="hide-if-mobile"
 				@click="toggle"
 			>
@@ -171,8 +169,11 @@ const linkQuery = computed(() => {
 	justify-content: space-between;
 	align-items: center;
 	border-bottom: 1px solid var(--color-border);
-	background-color: var(--color-component-background);
+	background-color:hsl(210, 5%, 16%, 0);
 	user-select: none;
+	position: absolute; /* 绝对定位 */
+	top: 0; /* 固定在页面顶部 */
+	left: 0; /* 从页面左边开始 */
 
 	&-logo {
 		display: flex;

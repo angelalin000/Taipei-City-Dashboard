@@ -80,6 +80,8 @@ onBeforeUnmount(() => {
 <template>
   <div class="app-container">
     <NotificationBar />
+	<img src="..\src\assets\images\giphy1.gif" alt="GIF" class="moving-gif">
+	<canvas class="board"></canvas>
     <NavBar v-if="authStore.currentPath !== 'embed'" />
     <!-- /mapview, /dashboard layouts -->
     <div
@@ -134,6 +136,32 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped lang="scss">
+.board {
+	height: 60px;
+	width: 100vw;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid var(--color-border);
+	user-select: none;
+	background-color:var(--color-component-background);
+}
+.moving-gif{
+	position: absolute;
+	width: auto;
+	height: 60px;
+	margin: 0 var(--font-m);
+	animation: move 8s linear infinite;
+	filter: var(--img-filter);
+}
+@keyframes move {
+	0% {
+		left: 0;
+	}
+	100% {
+		left: calc(100vw);
+	}
+}
 .app {
 	&-container {
 		max-width: 100vw;
