@@ -268,6 +268,7 @@ function handleConfirm() {
 			padding: 2px 4px;
 			border-radius: 5px;
 			background-color: var(--color-highlight);
+			color: var(--color-highlight-text);
 			font-size: var(--font-ms);
 		}
 	}

@@ -87,7 +87,7 @@ const handleDragEnd = () => {
 	justify-content: center;
 	padding: 4px;
 	border-radius: 5px;
-	background-color: var(--color-complement-text);
+	background-color: var(--color-component-background);
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: clip;
@@ -101,7 +101,7 @@ const handleDragEnd = () => {
 		top: 3px;
 		right: 2px;
 		padding: 2px 2px 0;
-		background-color: var(--color-complement-text);
+		background-color: var(--color-component-background);
 
 		span {
 			font-family: var(--font-icon);

@@ -391,6 +391,7 @@ onMounted(() => {
 					margin: 5px;
 					font-size: var(--font-ms);
 					background-color: var(--color-highlight);
+					color: var(--color-highlight-text);
 					border-radius: 10px;
 					&:hover {
 						opacity: 0.85;

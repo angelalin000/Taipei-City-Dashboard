@@ -125,7 +125,7 @@ onMounted(() => {
 				padding: 2px 6px;
 				border-radius: 5px;
 				background-color: var(--color-highlight);
-				color: var(--color-normal-text);
+				color: var(--color-highlight-text);
 
 				span {
 					margin-right: 4px;

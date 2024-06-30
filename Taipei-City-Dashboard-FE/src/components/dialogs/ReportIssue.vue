@@ -123,7 +123,7 @@ function handleClose() {
 		display: none;
 
 		&:checked + label {
-			color: white;
+			color: var(--color-normal-text);
 
 			div {
 				background-color: var(--color-highlight);
@@ -180,6 +180,7 @@ function handleClose() {
 			padding: 4px 10px;
 			border-radius: 5px;
 			background-color: var(--color-highlight);
+			color: var(--color-highlight-text);
 			transition: opacity 0.2s;
 
 			&:hover {

@@ -332,6 +332,7 @@ onMounted(() => {
 				color: var(--color-highlight);
 				font-size: var(--font-m);
 				font-family: var(--font-icon);
+				color: var(--color-highlight-text);
 				user-select: none;
 			}
 
@@ -369,6 +370,7 @@ onMounted(() => {
 			span {
 				margin-right: 4px;
 				font-family: var(--font-icon);
+				color: var(--color-highlight-text);
 				font-size: var(--font-m);
 			}
 
@@ -379,6 +381,7 @@ onMounted(() => {
 				padding: 2px 4px;
 				border-radius: 5px;
 				background-color: var(--color-highlight);
+				color: var(--color-highlight-text);
 				font-size: var(--font-ms);
 				transition: opacity 0.2s;
 
@@ -516,6 +519,7 @@ onMounted(() => {
 			span {
 				margin-bottom: var(--font-ms);
 				font-family: var(--font-icon);
+				color: var(--color-highlight-text);
 				font-size: 2rem;
 			}
 

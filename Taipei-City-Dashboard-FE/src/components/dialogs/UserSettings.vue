@@ -105,6 +105,7 @@ async function handleSubmit() {
 			padding: 4px 10px;
 			border-radius: 5px;
 			background-color: var(--color-highlight);
+			color: var(--color-highlight-text);
 			transition: opacity 0.2s;
 
 			&:hover {

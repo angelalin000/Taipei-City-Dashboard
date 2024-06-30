@@ -94,6 +94,7 @@ function handleAddViewPoint() {
 
 		button {
 			background-color: var(--color-highlight);
+			color: var(--color-highlight-text);
 			padding: 2px 4px;
 			font-size: var(--font-ms);
 			border-radius: 5px;

@@ -95,6 +95,7 @@ function handleOpenSettings() {
 
 		span {
 			font-family: var(--font-icon);
+			color: var(--color-highlight-text);
 			font-size: calc(var(--font-m) * var(--font-to-icon));
 		}
 
@@ -118,6 +119,7 @@ function handleOpenSettings() {
 		span {
 			margin-right: 4px;
 			font-family: var(--font-icon);
+			color: var(--color-highlight-text);
 			font-size: calc(var(--font-m) * var(--font-to-icon));
 		}
 
@@ -159,6 +161,7 @@ function handleOpenSettings() {
 		padding: 2px 4px;
 		border-radius: 4px;
 		background-color: var(--color-highlight);
+		color: var(--color-highlight-text);
 	}
 }
 </style>

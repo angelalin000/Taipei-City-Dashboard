@@ -159,6 +159,7 @@ function handleFind() {
 			padding: 2px 4px;
 			border-radius: 5px;
 			background-color: var(--color-highlight);
+			color: var(--color-highlight-text);
 			transition: opacity 0.2s;
 
 			&:hover {

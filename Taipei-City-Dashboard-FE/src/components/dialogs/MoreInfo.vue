@@ -255,6 +255,7 @@ function getLinkTag(link, index) {
 			span {
 				margin-right: 4px;
 				font-family: var(--font-icon);
+				color: var(--color-highlight-text);
 				font-size: var(--font-m);
 			}
 
@@ -265,6 +266,7 @@ function getLinkTag(link, index) {
 				padding: 2px 4px;
 				border-radius: 5px;
 				background-color: var(--color-highlight);
+				color: var(--color-highlight-text);
 				font-size: var(--font-ms);
 				transition: opacity 0.2s;
 

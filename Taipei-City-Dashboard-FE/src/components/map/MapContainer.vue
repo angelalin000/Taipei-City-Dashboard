@@ -59,7 +59,7 @@ onMounted(() => {
 					:style="{
 						color: districtLayer
 							? 'var(--color-highlight)'
-							: 'var(--color-component-background)',
+							: 'var(--color-complement-text)',
 					}"
 					@click="toggleDistrictLayer"
 				>
@@ -69,7 +69,7 @@ onMounted(() => {
 					:style="{
 						color: villageLayer
 							? 'var(--color-highlight)'
-							: 'var(--color-component-background)',
+							: 'var(--color-complement-text)',
 					}"
 					@click="toggleVillageLayer"
 				>
@@ -321,6 +321,7 @@ onMounted(() => {
 
 			&:hover {
 				background-color: var(--color-highlight);
+				color: var(--color-highlight-text);
 			}
 		}
 	}
