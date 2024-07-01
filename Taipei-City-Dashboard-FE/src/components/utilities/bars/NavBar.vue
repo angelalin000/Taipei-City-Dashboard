@@ -24,6 +24,26 @@ const linkQuery = computed(() => {
 });
 </script>
 
+<script>
+export default {
+	data() {
+		return {
+			// 使用物件來追蹤每個按鈕的懸停狀態
+			isHovered: {
+				modeButton: false,
+				infoButton: false,
+			},
+		};
+	},
+	methods: {
+		// 更新懸停狀態的方法
+		toggleHovered(button, value) {
+			this.isHovered[button] = value;
+		},
+	},
+};
+</script>
+
 <template>
 	<div class="navbar">
 		<a href="/">
@@ -77,18 +97,30 @@ const linkQuery = computed(() => {
 				v-if="!(authStore.isMobileDevice && authStore.isNarrowDevice)"
 				class="hide-if-mobile"
 				@click="toggle"
+				@mouseover="toggleHovered('FullscreenButton', true)"
+				@mouseleave="toggleHovered('FullscreenButton', false)"
 			>
-				<span>{{
+				<span :class="{ glow: isHovered.FullscreenButton }">{{
 					isFullscreen ? "fullscreen_exit" : "fullscreen"
 				}}</span>
 			</button>
-			<button v-if="authStore.token" @click="authStore.toggleMode">
-				<span>{{
+			<button
+				v-if="authStore.token"
+				@click="authStore.toggleMode"
+				@mouseover="toggleHovered('modeButton', true)"
+				@mouseleave="toggleHovered('modeButton', false)"
+			>
+				<span :class="{ glow: isHovered.modeButton }">{{
 					authStore.user.mode === "light" ? "dark_mode" : "light_mode"
 				}}</span>
 			</button>
 			<div class="navbar-user-info">
-				<button><span>info</span></button>
+				<button
+					@mouseover="toggleHovered('infoButton', true)"
+					@mouseleave="toggleHovered('infoButton', false)"
+				>
+					<span :class="{ glow: isHovered.infoButton }">info</span>
+				</button>
 				<ul>
 					<li>
 						<a
@@ -171,10 +203,7 @@ const linkQuery = computed(() => {
 	border-bottom: 1px solid var(--color-border);
 	background-color: hsl(210, 5%, 16%, 0);
 	user-select: none;
-	position: absolute; /* 绝对定位 */
-	top: 0; /* 固定在页面顶部 */
-	left: 0; /* 从页面左边开始 */
-
+	
 	&-logo {
 		display: flex;
 
@@ -250,6 +279,7 @@ const linkQuery = computed(() => {
 		span {
 			font-family: var(--font-icon);
 			font-size: calc(var(--font-l) * var(--font-to-icon));
+			filter: brightness(60%);
 		}
 
 		&-user:hover ul,
@@ -326,5 +356,12 @@ const linkQuery = computed(() => {
 			}
 		}
 	}
+}
+span {
+	transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+}
+span.glow {
+	transform: scale(1.3);
+	filter: brightness(100%);
 }
 </style>

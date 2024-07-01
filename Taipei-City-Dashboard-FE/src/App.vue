@@ -80,9 +80,9 @@ onBeforeUnmount(() => {
 <template>
   <div class="app-container">
     <NotificationBar />
+	<NavBar v-if="authStore.currentPath !== 'embed'" />
 	<img src="..\src\assets\images\giphy1.gif" alt="GIF" class="moving-gif">
 	<canvas class="board"></canvas>
-    <NavBar v-if="authStore.currentPath !== 'embed'" />
     <!-- /mapview, /dashboard layouts -->
     <div
       v-if="
@@ -145,6 +145,10 @@ onBeforeUnmount(() => {
 	border-bottom: 1px solid var(--color-border);
 	user-select: none;
 	background-color:var(--color-component-background);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -2;
 }
 .moving-gif{
 	position: absolute;
@@ -152,6 +156,10 @@ onBeforeUnmount(() => {
 	height: 60px;
 	margin: 0 var(--font-m);
 	animation: move 8s linear infinite;
+	position: absolute;
+	top: 0; /* 固定在页面顶部 */
+	left: 0; /* 从页面左边开始 */
+	z-index: -1;
 	filter: var(--img-filter);
 }
 @keyframes move {
