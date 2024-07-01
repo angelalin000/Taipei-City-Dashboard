@@ -4,7 +4,7 @@
 
 <script setup>
 const { VITE_APP_TITLE } = import.meta.env;
-import { computed } from "vue";
+import { computed , ref } from "vue";
 import { useRoute } from "vue-router";
 import { useFullscreen } from "@vueuse/core";
 import { useAuthStore } from "../../../store/authStore";
@@ -12,16 +12,24 @@ import { useDialogStore } from "../../../store/dialogStore";
 
 import UserSettings from "../../dialogs/UserSettings.vue";
 import ContributorsList from "../../dialogs/ContributorsList.vue";
+import IntroduceModal from "../../dialogs/IntroductionModal.vue";
 
 const route = useRoute();
 const authStore = useAuthStore();
 const dialogStore = useDialogStore();
 const { isFullscreen, toggle } = useFullscreen();
+const showModal = ref(false);
 
 const linkQuery = computed(() => {
 	const { query } = route;
 	return `?index=${query.index}`;
 });
+const introduce = () => {
+	showModal.value = true;
+}
+const closeModal = () => {
+	showModal.value = false;
+}
 </script>
 
 <script>
@@ -93,6 +101,13 @@ export default {
 			</router-link>
 		</div>
 		<div class="navbar-user">
+			<button 
+				@click="introduce"
+				@mouseover="toggleHovered('IntroduceButton', true)"
+				@mouseleave="toggleHovered('IntroduceButton', false)"
+			>
+				<span :class="{ glow: isHovered.IntroduceButton }">speaker_notes</span>
+			</button>
 			<button
 				v-if="!(authStore.isMobileDevice && authStore.isNarrowDevice)"
 				class="hide-if-mobile"
@@ -190,6 +205,10 @@ export default {
 				<button @click="dialogStore.showDialog('login')">登入</button>
 			</div>
 		</div>
+		<IntroduceModal
+			:show="showModal"
+			@close="closeModal"
+		/>
 	</div>
 </template>
 
@@ -203,7 +222,7 @@ export default {
 	border-bottom: 1px solid var(--color-border);
 	background-color: hsl(210, 5%, 16%, 0);
 	user-select: none;
-	
+
 	&-logo {
 		display: flex;
 
@@ -358,7 +377,7 @@ export default {
 	}
 }
 span {
-	transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+	transition: transform 0.3s ease-in-out, filter 0.5s ease-in-out;
 }
 span.glow {
 	transform: scale(1.3);
