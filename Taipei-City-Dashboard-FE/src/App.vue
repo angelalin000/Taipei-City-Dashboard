@@ -152,22 +152,25 @@ onBeforeUnmount(() => {
 }
 .moving-gif{
 	position: absolute;
-	width: auto;
-	height: 60px;
+	width: 40px;
+	height: auto;
 	margin: 0 var(--font-m);
-	animation: move 8s linear infinite;
+	animation: move 15s linear infinite;
 	position: absolute;
-	top: 0; /* 固定在页面顶部 */
+	top: 3px; /* 固定在页面顶部 */
 	left: 0; /* 从页面左边开始 */
 	z-index: -1;
 	filter: var(--img-filter);
 }
 @keyframes move {
 	0% {
-		left: 0;
+		left: -10px;
+	}
+	50% {
+		left: calc(100vw - 40px);
 	}
 	100% {
-		left: calc(100vw);
+		left: -10px;
 	}
 }
 .app {
