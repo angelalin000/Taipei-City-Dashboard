@@ -22,6 +22,7 @@ import NotificationBar from "./components/dialogs/NotificationBar.vue";
 import InitialWarning from "./components/dialogs/InitialWarning.vue";
 import ComponentSideBar from "./components/utilities/bars/ComponentSideBar.vue";
 import LogIn from "./components/dialogs/LogIn.vue";
+import AppFooter from "./components/utilities/bars/AppFooter.vue";
 
 const authStore = useAuthStore();
 const dialogStore = useDialogStore();
@@ -95,6 +96,7 @@ onBeforeUnmount(() => {
       <div class="app-content-main">
         <SettingsBar />
         <RouterView />
+		<AppFooter />
       </div>
     </div>
     <!-- /admin layouts -->
@@ -105,6 +107,7 @@ onBeforeUnmount(() => {
       <AdminSideBar />
       <div class="app-content-main">
         <RouterView />
+		<AppFooter />
       </div>
     </div>
     <!-- /component, /component/:index layouts -->
@@ -115,10 +118,12 @@ onBeforeUnmount(() => {
       <ComponentSideBar />
       <div class="app-content-main">
         <RouterView />
+		<AppFooter />
       </div>
     </div>
     <div v-else>
       <router-view />
+	  <AppFooter />
     </div>
     <InitialWarning />
     <LogIn />

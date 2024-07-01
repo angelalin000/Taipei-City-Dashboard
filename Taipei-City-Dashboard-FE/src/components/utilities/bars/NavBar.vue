@@ -349,7 +349,8 @@ export default {
 				}
 
 				li:hover {
-					background-color: var(--color-complement-text);
+					background-color: var(--color-component-background);
+					filter: var(--img-filter);
 				}
 			}
 		}
