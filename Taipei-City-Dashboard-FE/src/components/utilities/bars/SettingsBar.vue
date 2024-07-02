@@ -95,7 +95,7 @@ function handleOpenSettings() {
 
 		span {
 			font-family: var(--font-icon);
-			color: var(--color-highlight-text);
+			color: var(--color-complement-text);
 			font-size: calc(var(--font-m) * var(--font-to-icon));
 		}
 
