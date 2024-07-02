@@ -159,8 +159,8 @@ function handleMoreInfo(item) {
 
 <style scoped lang="scss">
 .dashboard {
-	max-height: calc(100vh - 127px);
-	max-height: calc(var(--vh) * 100 - 127px);
+	max-height: calc(100vh - 127px - 90px);
+	max-height: calc(var(--vh) * 100 - 127px - 90px);
 	display: grid;
 	row-gap: var(--font-s);
 	column-gap: var(--font-s);

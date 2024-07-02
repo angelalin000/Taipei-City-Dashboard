@@ -284,8 +284,8 @@ function shouldDisable(map_config) {
 
 <style scoped lang="scss">
 .map {
-	height: calc(100vh - 127px);
-	height: calc(var(--vh) * 100 - 127px);
+	height: calc(100vh - 127px - 90px);
+	height: calc(var(--vh) * 100 - 127px - 90px);
 	display: flex;
 	margin: var(--font-m) var(--font-m);
 
