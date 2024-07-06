@@ -11,11 +11,13 @@ Testing: Jack Huang (Data Scientist), Ian Huang (Data Analysis Intern)
 <script setup>
 import { ref, onMounted } from "vue";
 import { DashboardComponent } from "city-dashboard-component";
+import WishComponent from "../components/dialogs/WishComponent.vue"
 
 import { useContentStore } from "../store/contentStore";
 import router from "../router/index";
 
 const contentStore = useContentStore();
+const showWishComponent = ref(false);
 
 const searchParams = ref({
 	searchbyindex: "",
@@ -41,6 +43,11 @@ function toggleFavorite(id) {
 onMounted(() => {
 	contentStore.getAllComponents(searchParams.value);
 });
+
+function toggleWishComponent() {
+	showWishComponent.value = !showWishComponent.value;
+}
+
 </script>
 
 <template>
@@ -107,6 +114,19 @@ onMounted(() => {
         }
       "
     />
+	<div class="componentview-wish">
+      <p>找不到您想要的組件嗎</p>
+      <p>~歡迎許願~</p>
+      <button @click="toggleWishComponent"
+	  >
+        許願
+      </button>
+    </div>
+    <WishComponent
+      v-if="showWishComponent"
+      @close="toggleWishComponent"
+    />
+
   </div>
   <!-- 2. If the components are still loading -->
   <div
@@ -164,6 +184,35 @@ onMounted(() => {
 
 	@media (min-width: 2200px) {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	}
+
+
+	&-wish{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border-radius: 5px;
+		background-color: var(--dashboardcomponent-color-component-background);
+
+		p {
+			font-size: 18px;
+			font-weight: bold;
+			font-family: "微軟正黑體" , "Microsoft JhengHei";
+		}
+
+		button{
+			width: 100px;
+			height: 40px;
+			margin-top: 30px;
+			border-radius: 5px;
+			background-color: var(--dashboardcomponent-color-complement-text);
+			color: var(--dashboardcomponent-color-component-background);
+			font-size: 18px;
+			font-weight: bold;
+			font-family: "微軟正黑體" , "Microsoft JhengHei";
+		
+		}
 	}
 
 	&-search {
