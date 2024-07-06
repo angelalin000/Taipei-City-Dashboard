@@ -12,7 +12,7 @@
 	</footer>
 </template>
 
-<style>
+<style  scoped lang="scss">
 .app-footer {
 	border-top: 1px solid var(--color-border);
 	display: inline-block;
